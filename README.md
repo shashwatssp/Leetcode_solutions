@@ -1,1 +1,1 @@
-Putting my Leetcode solutions to Github.
+Putting my Leetcode and GFG solutions to Github.
