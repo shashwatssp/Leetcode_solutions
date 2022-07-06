@@ -5,14 +5,13 @@ public:
     vector<int>a = vector<int>(31,-1);
     
     int fib(int n) {
+    a[0]=0;
+    a[1]=1;
         
-        if(n==1 || n==0)
-            return n;
-          
-            if(a[n]!=-1)
-                return a[n];
+        for(int i=2;i<=n;i++)
+            a[i]=a[i-1]+a[i-2];
         
-            return a[n]=fib(n-1)+fib(n-2);
+        return a[n];
         
     }
 };
