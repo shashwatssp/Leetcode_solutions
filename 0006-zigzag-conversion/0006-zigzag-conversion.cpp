@@ -1,23 +1,28 @@
 class Solution {
 public:
     string convert(string s, int numRows) {
-      int step= 2*numRows-2;
-      string ans="";
+      vector<string>v(numRows,"");
         
-      if(numRows==1) return s;  
-      
-        for(int i=0;i<numRows;i++)
+      int i=0;
+      int a=0;
+      int b=0;
+        
+      while(i<s.size())
+      {
+        for(a=0;a<numRows && i<s.size();a++)
+        v[a].push_back(s[i++]);
+        
+        for(a=numRows-2; a>0 && i<s.size();a--)
+        v[a].push_back(s[i++]);    
+      } 
+        
+        string ans="";
+        
+        for(auto it : v)
         {
-            for(int j=i;j<s.size();j+=step)
-                
-            {   ans.push_back(s[j]);
-                int target = j + step - 2*i;
-                if(i!=0 && i!= numRows-1 && target<s.size())
-                {
-                    ans.push_back(s[target]);
-                }
-            }
+            ans+=it;
         }
+            
         return ans;
     }
 };
