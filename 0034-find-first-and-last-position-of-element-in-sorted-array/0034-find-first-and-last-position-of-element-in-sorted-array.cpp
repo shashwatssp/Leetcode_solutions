@@ -12,16 +12,14 @@ public:
         ans.push_back(ub);
         
         vector<int> alt;
-        if(nums.size()==1)
-        {
-            if(ub==lb && ub==0)
+        
+           if(ub==lb && ub==0)
             {
             alt.push_back(0);
             alt.push_back(0); 
                 return alt;
             }
                
-        }
         
         if(ub<lb)
         {
