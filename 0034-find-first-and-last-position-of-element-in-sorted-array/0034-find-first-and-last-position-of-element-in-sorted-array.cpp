@@ -13,10 +13,10 @@ public:
         
         vector<int> alt;
         
-           if(ub==lb && ub==0)
+           if(ub==lb)
             {
-            alt.push_back(0);
-            alt.push_back(0); 
+            alt.push_back(ub);
+            alt.push_back(ub); 
                 return alt;
             }
                
