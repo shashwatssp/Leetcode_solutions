@@ -11,17 +11,18 @@ public:
         {
             if(map[s[j]]<k)
             {   
-                while(j<s.size() && map[s[j]]<k) j++;
+               while(j<s.size() && map[s[j]]<k) j++;
                 j--;
+                
                 isValid=false;
                 string a = s.substr(i,j);
+                
+                ans = max(ans,(longestSubstring(a,k)));   
                 i=j+1;
-                ans = max(ans,longestSubstring(a,k));
             }
         }
         
-        if(isValid) return s.size();
-        else return max(ans,longestSubstring(s.substr(i),k));
-        
+        string b = s.substr(i);
+        return isValid?s.size():max(ans,longestSubstring(b,k));
     }
 };
