@@ -5,7 +5,7 @@ public:
         map<string,int>map,vis;
                 for(auto it: deadends)
                 map[it]++;
-        
+         if(map[init]) return -1;
         
         
     queue<string>q;
@@ -25,9 +25,6 @@ public:
                 
                 if(top==target)
                     return ans;
-                
-
-                    if(map[top]) continue;
             
             
                 for(int i=0;i<top.size();i++)
@@ -41,9 +38,9 @@ public:
                         t1[i] = t1[i]+1;
                         t2[i] = t2[i]-1;
                         
-                        if(vis[t1]==0)
+                        if(vis[t1]==0 && map[t1]==0)
                         q.push(t1);
-                        if(vis[t2]==0)
+                        if(vis[t2]==0 && map[t2]==0)
                         q.push(t2);
                     }
                     else  if(top[i]=='0')
@@ -52,9 +49,9 @@ public:
                         string t2 = top;
                         t1[i] = '1';
                         t2[i] = '9';
-                        if(vis[t1]==0)
+                        if(vis[t1]==0 && map[t1]==0)
                         q.push(t1);
-                        if(vis[t2]==0)
+                        if(vis[t2]==0 && map[t2]==0)
                         q.push(t2);
                     }
                     else 
@@ -63,9 +60,9 @@ public:
                         string t2 = top;
                         t1[i] = '8';
                         t2[i] = '0';
-                        if(vis[t1]==0)
+                        if(vis[t1]==0 && map[t1]==0)
                         q.push(t1);
-                        if(vis[t2]==0)
+                        if(vis[t2]==0 && map[t2]==0)
                         q.push(t2);
                     }
                 }
