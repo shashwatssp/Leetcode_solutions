@@ -4,13 +4,6 @@ public:
     int n=prices.size();
      if(n<=1 || k==0) return 0;
         k*=2;
-        if(k>=n)
-        {
-            int ans=0;
-            for(int i=1;i<n;i++)
-                if(prices[i]-prices[i-1]>0) ans+= (prices[i]-prices[i-1]);
-            return ans;
-        }
         
         int dp[k+1];
         for(int i=0;i<=k;i++)
