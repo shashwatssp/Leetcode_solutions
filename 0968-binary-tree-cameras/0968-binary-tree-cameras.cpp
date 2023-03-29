@@ -16,10 +16,14 @@ public:
     int needs_camera = -1;
     int covered = 1;
     
+    map<TreeNode*,int>dp;
+    
     int solve(TreeNode* root)
     {
         if(root==nullptr)
             return covered;
+        
+        if(dp[root]) return dp[root];
         
         int left = solve(root->left);
         int right = solve(root->right);
@@ -27,15 +31,15 @@ public:
         if(left==needs_camera || right == needs_camera)
         {
             ans++;
-            return has_camera;
+            return dp[root] =  has_camera;
         }
         else if (left == has_camera || right == has_camera)
         {
-            return covered;
+            return dp[root]=covered;
         }
         else
         {
-            return needs_camera;
+            return dp[root] = needs_camera;
         }
     }
     int minCameraCover(TreeNode* root) {
