@@ -4,6 +4,7 @@ public:
        int ans=0;
        int cur=0;
        int prev=0;
+       int n = nums.size();
         
        for(int i=2;i<nums.size();i++)
        {
