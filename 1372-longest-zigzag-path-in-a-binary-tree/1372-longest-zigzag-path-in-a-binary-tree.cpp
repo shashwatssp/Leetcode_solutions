@@ -12,6 +12,7 @@
 class Solution {
 public:
     int ans = 0;
+    map<TreeNode*,int>map;
     
     void solve(TreeNode* root, int dir, int len)
     {
@@ -19,7 +20,10 @@ public:
          
         ans = max(ans,len);
         
-        if(dir==0)
+        if(map[root])
+         ans = max(ans,map[root]);   
+            
+        else if(dir==0)
         {
         solve(root->left,0,1);
         solve(root->right,1,len+1);  
@@ -29,6 +33,8 @@ public:
         solve(root->left,0,len+1);
         solve(root->right,1,1);    
         }
+        
+        map[root]=ans;
         return;
         
     }
