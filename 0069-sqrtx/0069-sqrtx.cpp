@@ -8,8 +8,7 @@ public:
         long long mid = (st) + (en-st)/2; 
         while(st<=en)
         {
-         long long mid = (st+en+1)/2; 
-         
+
             if(mid*mid == x)
              return mid;
             else if (mid*mid<x)
