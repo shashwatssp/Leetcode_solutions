@@ -10,7 +10,7 @@ public:
          long long mid = (st+en+1)/2; 
          
             if(mid*mid == x)
-             return (int)mid;
+             return mid;
             else if (mid*mid<x)
             {
                ans = mid;
@@ -20,7 +20,7 @@ public:
                 en = mid-1;
             
         }
-        return (int)ans;
+        return ans;
         
         
     }
