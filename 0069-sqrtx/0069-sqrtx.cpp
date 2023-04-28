@@ -5,7 +5,7 @@ public:
         long long st=1;
         long long en=x;
         long long ans = 0;
-        long long mid = (st+en+1)/2; 
+        long long mid = (st) + (en-st)/2; 
         while(st<=en)
         {
          long long mid = (st+en+1)/2; 
@@ -20,7 +20,7 @@ public:
             else
                 en = mid-1;
             
-           mid = (st+en+1)/2; 
+           mid = (st) + (en-st)/2;  
         }
        return ans;
     }
