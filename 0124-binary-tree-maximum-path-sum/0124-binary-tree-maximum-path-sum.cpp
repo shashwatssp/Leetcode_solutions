@@ -11,32 +11,27 @@
  */
 class Solution {
 public:
-    map<TreeNode*,int>dp;
-    int ans = INT_MIN;
-    int solve(TreeNode* root)
+    int ans=INT_MIN;
+    
+    int maxSum(TreeNode* root)
     {
-        if(root==nullptr) return 0;
+        
         
         int left=0;
         int right=0;
         
         if(root->left)
-            if(dp[root->left])
-                left = dp[root->left];
-        else left = max(0,solve(root->left));
+            left = max(0, maxSum(root->left));
         
         if(root->right)
-            if(dp[root->right])
-                right = dp[root->right];
-        else right = max(0,solve(root->right));
+            right = max(0, maxSum(root->right));  
         
         ans = max(ans, left+right+ root->val);
-        dp[root]=ans;
         
         return max(left,right)+ root->val;
     }
     int maxPathSum(TreeNode* root) {
-        solve(root);
+        maxSum(root);
         return ans;
     }
 };
