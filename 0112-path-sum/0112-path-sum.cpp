@@ -11,11 +11,16 @@
  */
 class Solution {
 public:
+    map<TreeNode*,bool>dp;
+    
     bool check(TreeNode* root, int sum)
     {
-        if(root==nullptr) return false;
-        if(root->left==nullptr && root->right==nullptr && sum==root->val) return true;
-        return check(root->left,sum-root->val)||check(root->right,sum-root->val);
+        if(root==nullptr) return dp[root]=false;
+        
+        if(dp[root]) return dp[root];
+        
+        if(root->left==nullptr && root->right==nullptr && sum==root->val) return dp[root]=true;
+        return dp[root]= (check(root->left,sum-root->val)||check(root->right,sum-root->val));
     }
     bool hasPathSum(TreeNode* root, int targetSum) {
        return check(root,targetSum);
