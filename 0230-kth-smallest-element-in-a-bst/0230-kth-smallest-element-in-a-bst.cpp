@@ -21,6 +21,7 @@ public:
         if(val==0)
         {   
             ans = (root->val);
+            return ans;
         }
         if(root->right) solve(root->right);
         
