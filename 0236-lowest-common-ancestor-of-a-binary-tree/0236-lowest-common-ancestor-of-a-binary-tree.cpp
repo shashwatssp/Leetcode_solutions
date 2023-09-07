@@ -9,26 +9,45 @@
  */
 class Solution {
 public:
-    TreeNode* ans = NULL;
-    bool solve(TreeNode* root, TreeNode* p, TreeNode* q)
+   map<TreeNode*,TreeNode*> par;
+    void parent(TreeNode* root, TreeNode* pare)
     {
-    if(root==NULL)
-        return false;
-     
-        if(ans) return true;
+    if(root== nullptr) return;
         
-    bool self = (root->val == p->val || root->val == q->val);
-    bool right = solve(root->right,p,q);
-    if(ans) return true;
-    bool left = solve(root->left,p,q);
-    if(ans) return true;
-    
-    if(self+right+left==2) ans = root;    
-    
-    return self || right || left;
+    if(pare)    
+    par[root] = pare;
+        
+        parent(root->left,root);
+        parent(root->right,root);
+        
+        return;
     }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        solve(root,p,q);
-        return ans;
+     parent(root, nullptr);
+        
+
+     
+     map<TreeNode*,TreeNode*> p_par;
+        
+        while(par[p])
+        {   
+            TreeNode* x = par[p];
+            p_par[p] = p;
+            p = x;
+            
+        }
+
+        
+        while(par[q])
+        {   
+            if(p_par[q])
+                return q;
+            
+            q = par[q];
+            
+                if(p_par[q])
+                return q;
+        }
+        return root;
     }
 };
