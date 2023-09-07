@@ -9,45 +9,16 @@
  */
 class Solution {
 public:
-   map<TreeNode*,TreeNode*> par;
-    void parent(TreeNode* root, TreeNode* pare)
-    {
-    if(root== nullptr) return;
-        
-    if(pare)    
-    par[root] = pare;
-        
-        parent(root->left,root);
-        parent(root->right,root);
-        
-        return;
-    }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-     parent(root, nullptr);
+        if(root==nullptr || root==p || root==q)
+            return root;
         
-
-     
-     map<TreeNode*,TreeNode*> p_par;
+        TreeNode* left = lowestCommonAncestor(root->left,p,q);
+        TreeNode* right = lowestCommonAncestor(root->right,p,q);
         
-        while(par[p])
-        {   
-            TreeNode* x = par[p];
-            p_par[p] = p;
-            p = x;
-            
-        }
-
+        if(left==nullptr) return right;
+        if(right==nullptr) return left;
         
-        while(par[q])
-        {   
-            if(p_par[q])
-                return q;
-            
-            q = par[q];
-            
-                if(p_par[q])
-                return q;
-        }
         return root;
     }
 };
