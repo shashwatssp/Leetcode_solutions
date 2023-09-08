@@ -24,17 +24,15 @@ public:
             int find_index = upper_bound(p.begin(), p.end(), v[i].second.first) - p.begin();
             find_index--;
             
-            cout<<pick<<" ";
             if(find_index>=0) pick+= dp[find_index];
-            
+    
             int non_pick = 0;
             if(i>0) non_pick = dp[i-1];
             
             dp[i] = max(pick,non_pick);
-            cout<<dp[i]<<" ";
-            cout<<find_index<<endl;
+            
             }
-        cout<<endl;
+        
         
         return dp[n-1];
         
