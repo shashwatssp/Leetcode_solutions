@@ -1,47 +1,49 @@
 class Solution {
 public:
     
-    int find(int i, map<int,int> & parent)
+    char find(char i, map<char,char> & parent)
     {
-        if(parent[i]==-1)
-            return i;
+        if(parent[i]=='A')
+            return char(i);
         return find(parent[i],parent);
     }
     
     bool equationsPossible(vector<string>& equations) {
         
-        map<int,int>parent;
+        map<char,char>parent;
         
         for(auto it: equations)
         {   
             
-            int x = it[0]-'a';
-            int y = it[3]-'a';
+            char x = it[0];
+            char y = it[3];
             
-                parent[x] = -1;
-                parent[y] = -1;
+
+                parent[x] = 'A';
+                parent[y] = 'A';
         }
         
         for(auto it: equations)
         {   
             if(it[1]=='!') continue;
             
-            int x = find(it[0]-'a',parent);
-            int y = find(it[3]-'a',parent);
+            char x = find(it[0],parent);
+            char y = find(it[3],parent);
             
+
             
             if(x!=y)
                 parent[x] = y;
         }
-       
+        
         for(auto it: equations)
         {   
+            
+            
             if(it[1]=='=') continue;
-
             
-            
-            int x = it[0]-'a';
-            int y = it[3]-'a';
+            char x = it[0];
+            char y = it[3];
             
             if(find(x,parent)==find(y,parent))
                 return false;
