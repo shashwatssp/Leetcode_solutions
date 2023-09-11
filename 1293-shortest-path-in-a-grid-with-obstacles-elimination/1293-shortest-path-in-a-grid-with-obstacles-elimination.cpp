@@ -44,12 +44,9 @@ public:
                 
                 if(vis[x][y][z]==1) continue;
                 
-                cout<<x<<" "<<y<<" "<<z<<endl;
-                
                 vis[x][y][z]=1;
                 
                 if(grid[x][y]==1) z--;
-                cout<<grid[x][y]<<endl;
                 
                 if(z<0) continue;
                 
@@ -65,7 +62,6 @@ public:
                 if(y-1>=0 && vis[x][y-1][z] != 1)
                 q.push({x,y-1,z});                
             }
-            cout<<"-----"<<endl;
             ans++;
         }
         
