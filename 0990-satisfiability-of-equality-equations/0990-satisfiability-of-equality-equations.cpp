@@ -29,18 +29,15 @@ public:
             int x = find(it[0]-'a',parent);
             int y = find(it[3]-'a',parent);
             
-            cout<<it[0]<<" "<<it[1]<<" "<<it[2]<<" "<<it[3]<<" "<<endl;
-            cout<<x<<" "<<y<<endl;
             
             if(x!=y)
                 parent[x] = y;
         }
-        cout<<"------------"<<endl;
+       
         for(auto it: equations)
         {   
             if(it[1]=='=') continue;
-            cout<<it[0]<<" "<<it[1]<<" "<<it[2]<<" "<<it[3]<<" "<<endl;
-            cout<<parent[it[0]]<<" "<<parent[it[3]]<<endl;
+
             
             
             int x = it[0]-'a';
