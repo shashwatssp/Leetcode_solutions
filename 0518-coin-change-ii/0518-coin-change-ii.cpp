@@ -3,20 +3,41 @@ public:
     int dp[350][5500];
     int solve(int i,int amount, vector<int>& coins, int n)
     {   
-        if(amount==0) return 1; 
-        if(amount<0 || i==n) return 0;
+       
+        if(amount==0) return 1;
         
-        if(dp[i][amount]!=-1) return dp[i][amount];
+        for(int i=0;i<=n;i++)
+        {
+            for(int j=0;j<amount;j++)
+            {
+                if(j==0)
+                dp[i][0] = 1;
+                else
+                dp[i][j] = 0;    
+            }
+            
+        }
+    
         
-        int ans1 = solve(i,amount-coins[i],coins,n);
-        int ans2 = solve(i+1,amount,coins,n);
+        for(int i=n-1;i>=0;i--)
+        {
+            for(int j=0;j<=amount;j++)
+            {
+           int ans1 = 0;
+                if(j-coins[i]>=0)
+                ans1 = dp[i][j-coins[i]];
+           int ans2 = dp[i+1][j];
+           dp[i][j] = ans1+ans2; 
+  
+            }
+        }
         
-        return dp[i][amount]= ans1+ans2;
+        
+        return dp[0][amount];
         
     }
     int change(int amount, vector<int>& coins) {
         int n = coins.size();
-        memset(dp,-1,sizeof(dp));
         return solve(0,amount,coins,n);
     }
 };
