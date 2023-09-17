@@ -1,46 +1,45 @@
 class Solution {
 public:
-    void help(vector<vector<string>> &ans,vector<string> &cur, string s)
-    {
-    if(s.size()==0)
-    {
-        ans.push_back(cur);
-        return;
-    }
-       
-        for(int i=0;i<s.size();i++)
-        {
-            string a = s.substr(0,i+1);
-            
-            cout<<a<<endl;
-            
-            if(check(a))
-            {
-                cur.push_back(a);
-                help(ans,cur,s.substr(i+1));
-                cur.pop_back();
-            }
-        }
-        
-        
-    }
-    
+    vector<vector<string>>ans;
     bool check(string s)
     {
         int i=0;
         int j=s.size()-1;
         
-        while(i<j)
+        while(i<j && s[i]==s[j])
         {
-        if(s[i]!=s[j]) return false;
-            i++;j--;
+            i++;
+            j--;
         }
-        return true;
+        
+        return (i>=j);
+    }
+    void solve(int i, string cur, string s, vector<string>temp, int n)
+    {
+        if(i==n)
+        {
+            ans.push_back(temp);
+            return;
+        }
+        
+        for(int j=i;j<n;j++)
+        {
+            cur+=s[j];
+            
+            if(check(cur))
+            {
+                temp.push_back(cur);
+                solve(j+1,"",s,temp,n);
+                temp.pop_back();
+            }
+        }
     }
     vector<vector<string>> partition(string s) {
-    vector<vector<string>>ans;
-    vector<string>cur;
-    help(ans,cur,s);
-    return ans;    
+        int n=s.size();
+        
+        vector<string>temp;
+        
+        solve(0,"",s,temp,n);
+        return ans;
     }
 };
