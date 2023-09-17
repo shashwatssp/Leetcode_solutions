@@ -14,20 +14,20 @@ public:
     int ans=0;
     void solve(TreeNode* root, long long target)
     {
-        if(root==nullptr) return;
-        if(target==root->val)ans++;
+       if(root==nullptr) return;
+       
         target-=root->val;
+        if(target==0) ans++;
+        
+        
         solve(root->left,target);
-        solve(root->right,target);
+        solve(root->right, target);
     }
     int pathSum(TreeNode* root, int targetSum) {
         if(root==nullptr) return 0;
         solve(root,targetSum);
-        
-            pathSum(root->left,targetSum);
-    
-            pathSum(root->right,targetSum);
-            
-            return ans;
+        pathSum(root->left,targetSum);
+        pathSum(root->right,targetSum);
+        return ans;
     }
 };
