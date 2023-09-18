@@ -8,11 +8,8 @@ public:
         sort(intervals.begin(),intervals.end());
         while(r<n)
         {
-            //no overlap
-            if(intervals[l][1]<=intervals[r][0]) l=r,r++;
-            //thoda sa overlap
+        if(intervals[l][1]<= intervals[r][0]) l=r,r++;
             else if (intervals[l][1]<=intervals[r][1]) r++,ans++;
-            //poora overlap
             else l=r,r++,ans++;
 
         }
