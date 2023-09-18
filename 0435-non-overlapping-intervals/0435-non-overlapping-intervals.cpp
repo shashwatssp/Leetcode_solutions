@@ -13,7 +13,7 @@ public:
             //thoda sa overlap
             else if (intervals[l][1]<=intervals[r][1]) r++,ans++;
             //poora overlap
-            else if(intervals[l][1]>intervals[r][1]) l=r,r++,ans++;
+            else l=r,r++,ans++;
 
         }
         return ans;
