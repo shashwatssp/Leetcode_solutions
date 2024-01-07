@@ -11,41 +11,39 @@
  */
 class Solution {
 public:
-    map<int,int>leftChild,rightChild,par;
+    map<int,int>leftChild,rightChild,parent;
     
     TreeNode* solve(int val)
     {
-       if(val==0) return nullptr;
+        if(val==0) return nullptr;
         
-       TreeNode* root = new TreeNode(val);
+        TreeNode* root = new TreeNode(val);
         
         root->left = solve(leftChild[val]);
+        
         root->right = solve(rightChild[val]);
         
         return root;
+        
     }
     
     TreeNode* createBinaryTree(vector<vector<int>>& descriptions) {
         
-        
         for(auto it : descriptions)
         {
+            parent[it[1]]= it[0];
+            
             if(it[2]==1)
                 leftChild[it[0]]=it[1];
-             if(it[2]==0)
-                 rightChild[it[0]]=it[1];
-             
-            par[it[1]] = it[0];
+            else
+                rightChild[it[0]]=it[1];
         }
         
         int x = descriptions[0][0];
         
-        while(par[x])
-        {
-            x = par[x];
-        }
+        while(parent[x])
+            x = parent[x];
         
-        TreeNode* root = new TreeNode(x);
         
         return solve(x);
     }
