@@ -12,7 +12,7 @@ public:
         for (auto it : adj[i])
         {
             if (!vis[it])
-                dfs(it, s, temp, vis, x, adj);  // Change i to it here
+                dfs(it, s, temp, vis, x, adj); 
         }
     }
     
@@ -41,8 +41,12 @@ public:
                 sort(x.begin(), x.end());
                 sort(temp.begin(),temp.end());
                 
-                for (int i = 0; i < temp.size(); i++)
+                int sz = temp.size();
+                
+                for (int i = 0; i < sz; i++)
                     s[temp[i]] = x[i];
+                
+                
             }
         }
         
