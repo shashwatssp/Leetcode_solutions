@@ -10,29 +10,25 @@
 
 class Solution {
 public:
-    TreeNode* ans;
-    int mn;
-    int mx;
-    void solve(TreeNode* root)
-    {
-        if(root==nullptr) return;
-        
-        if(root->val>=mn && root->val<=mx)
-        {
-            ans = root;
-            return;
-        }
-            
-        
-        solve(root->left);
-        solve(root->right);
-        
-    }
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
-        mn = min(p->val,q->val);
-        mx = max(p->val,q->val);
+        int mn = min(p->val,q->val);
+        int mx = max(p->val,q->val);
         
-        solve(root);
-        return ans;
+        while(root)
+        {
+            if(root->val>=mn && root->val<=mx)
+            return root;
+            else
+            {
+                if(root->val>mx)
+                    root = root->left;
+                else
+                    root = root->right;
+            }
+
+        }
+        
+        return root;
+        
     }
 };
