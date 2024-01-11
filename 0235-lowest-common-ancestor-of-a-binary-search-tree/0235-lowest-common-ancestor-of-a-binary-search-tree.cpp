@@ -14,7 +14,7 @@ public:
         int mn = min(p->val,q->val);
         int mx = max(p->val,q->val);
         
-        while(root)
+        while(root!=nullptr)
         {
             if(root->val>=mn && root->val<=mx)
             return root;
