@@ -15,7 +15,7 @@ public:
             for(int j=i-1;j>=0;j--)
             {
                 width+= books[j][0];
-                mx = max(mx,books[j][1]);
+                mx = max(mx, books[j][1]);
                 
                 if(width>shelfWidth) break;
                 
@@ -24,5 +24,6 @@ public:
         }
         
         return dp[n];
+        
     }
 };
